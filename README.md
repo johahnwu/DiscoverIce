@@ -7,3 +7,5 @@ When you're ready to merge your challenges:
 1. Let the admin know if you want to add challenges  
 2. Point admin to relevant files on your branch  
 
+If you are part of the class, take a look at the relevant sections of our WIKI at https://utischoolctflab.wikispaces.com/home  
+This should tell you everything you need to know about contributing and/or playing the game.
