@@ -48,17 +48,6 @@ def setup():
             admin.admin = True
             admin.banned = True
 
-            ## Index page
-            page = Pages('index', """<div class="container main-container">
-    <img class="logo" src="/static/img/logo.png" />
-    <h3 class="text-center">
-        Welcome to a cool CTF framework written by <a href="https://github.com/ColdHeat">Kevin Chung</a> of <a href="https://github.com/isislab">@isislab</a>
-    </h3>
-
-    <h4 class="text-center">
-        <a href="/admin">Click here</a> to login and setup your CTF
-    </h4>
-</div>""")
 
             #max attempts per challenge
             max_tries = set_config("max_tries",0)
@@ -107,7 +96,18 @@ def static_html(template):
     try:
         return render_template('%s.html' % template)
     except TemplateNotFound:
-        page = Pages.query.filter_by(route=template).first()
+        #page = Pages.query.filter_by(route=template).first()
+        page = Pages('index', """<div class="container main-container">
+    <img class="logo" src="/static/img/logo.png" />
+    <h3 class="text-center">
+        Welcome to the InfoSec CTF Jeopardy
+    </h3>
+
+    <h4 class="text-center">
+        <a href="/admin">Click here</a> to login and setup your CTF 
+        <p>This project was built using Kevin Chung of ISISLab's CTFd Framework</p>
+    </h4>
+</div>""")
         if page:
             return render_template_string('{% extends "base.html" %}{% block content %}' + page.html + '{% endblock %}')
         else:
