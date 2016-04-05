@@ -217,3 +217,7 @@ def profile():
                                    country=country, prevent_name_change=prevent_name_change, confirm_email=confirm_email)
     else:
         return redirect(url_for('auth.login'))
+
+@views.route('/web1')
+def web1():
+    return render_template('web1.html')
