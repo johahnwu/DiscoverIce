@@ -1,3 +1,4 @@
+![alt text](https://github.com/johahnwu/DiscoverIce/blob/master/CTFd-master/CTFd/static/img/logo.png)  
 This is the repository for the InfoSec Jeopardy-Style CTF called DiscoverIce  
 Visit the [Wiki Page](https://utischoolctflab.wikispaces.com/Playing+the+CTF) for a description of the project and any questions  
 If you're interested in setting it up from the repo see the [Setup Page](https://utischoolctflab.wikispaces.com/CTF+Jeopardy+Setup)  
