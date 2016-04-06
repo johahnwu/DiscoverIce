@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSS</title>
+        <h1>{{ flag }}</h1>
+        <h2>Welcome {{ name|safe }}!</h2>
+    </head>
+    <body>
+        <script>
+        $("input:text").val(function (i, value) {
+        /* Return the new value here. "value" is the old value of the input: */
+        return value.replace(/\s+/g, "_");
+        });
+        </script>
+        <form action="{{ url_for('views.web2') }}/and come again" method="GET">
+            Name: <input type="text" name="name" value=""/><br>
+            Email: <input type="text" name="email" value="" /><br>
+            <input type="submit" value="Register">
+        </form>
+    </body>
+</html>

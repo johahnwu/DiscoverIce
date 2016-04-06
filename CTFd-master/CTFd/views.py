@@ -13,6 +13,7 @@ import sys
 import json
 import os
 import datetime
+import re
 
 views = Blueprint('views', __name__)
 
@@ -221,3 +222,29 @@ def profile():
 @views.route('/web1')
 def web1():
     return render_template('web1.html')
+@views.route('/web2')
+@views.route('/web2/<path:username>')
+def web2(username='new user. Please Register'):
+    flag = ''
+    if checkXSS(username):
+        flag = 'vo2ywgfai34gib8'
+    return render_template('web2.html', name = username, flag = flag)
+
+    # if request.method == "POST":
+    #     name = request.form.get('name')
+    #     print(name)
+    #     return render_template('web2.html', name = name)
+    # else:
+    #     return render_template('web2.html', name = 'new user. Please Register')
+
+def checkXSS(xss):
+    '''
+    Check if user inputted string would result in an alert popping up 
+    Open to suggestions on how to do this better.
+    '''
+    pattern = re.compile(".*<script>.*alert\(.*\).*</script>.*")
+    if pattern.match(xss):
+        return True
+    else:
+        return False
+
