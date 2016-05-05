@@ -6,9 +6,3 @@ For anyone in class interested in contributing visit [here](https://utischoolctf
 Finally for a list of challenges and their description visit [here](https://utischoolctflab.wikispaces.com/Challenges)  
 Note: some of the challenges may not be completable if you just clone the repo as they require additional hosts on the network to act as vunerable machines. Visit the FAQ for a complete list 
 
-While this is in the wiki please note: try not to push to master.  
-Make your own branch and push to that.  
-When you're ready to merge your challenges:  
-1. Let the admin know if you want to add challenges  
-2. Point admin to relevant files on your branch  
-
