@@ -1,0 +1,16 @@
+<html>
+    <p> Insert Username to access user information.</p>
+    <form action="/sqli" method="GET">
+        <input type="text" name="user">
+        <input type="submit" name="Submit" value="Submit">
+    </form>
+
+    {% for i in range(first_name|length) %}
+	<div>First Name: {{first_name[i]}} </div>
+	<div>Last Name:  {{last_name[i]}}  </div>
+
+	<br>
+	<br>
+    {% endfor %}
+
+</html>

@@ -4,14 +4,34 @@ from logging.handlers import RotatingFileHandler
 from flask.ext.session import Session
 import os
 import sqlalchemy
+from flask.ext.mysqldb import MySQL
 
 
 def create_app(config='CTFd.config'):
     app = Flask("CTFd")
+
     with app.app_context():
         app.config.from_object(config)
 
-        from CTFd.models import db, Teams, Solves, Challenges, WrongKeys, Keys, Tags, Files, Tracking
+        from CTFd.models import db, Teams, Solves, Challenges, WrongKeys, Keys, Tags, Files, Tracking, mysql
+
+        app.config['MYSQL_DATABASE_USER'] = 'root'
+        app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+        app.config['MYSQL_DATABASE_DB'] = 'EmpData'
+        app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+        mysql.init_app(app)
+
+        cursor = mysql.connection.cursor()
+        
+
+#        cursor.execute('CREATE DATABASE  IF NOT EXISTS info_sec;')
+#        cursor.execute('USE info_sec;')        
+#        cursor.execute('CREATE TABLE IF NOT EXISTS info_sec.security_table \
+#        (\
+#        username varchar(255),\
+#        pass char(255));')
+
+
 
         db.init_app(app)
         db.create_all()
