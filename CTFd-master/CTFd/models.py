@@ -1,5 +1,6 @@
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import DatabaseError
+from flask.ext.mysqldb import MySQL
 
 from socket import inet_aton, inet_ntoa
 from struct import unpack, pack
@@ -22,7 +23,7 @@ def long2ip(ip_int):
     return inet_ntoa(pack('!I', ip_int))
 
 db = SQLAlchemy()
-
+mysql = MySQL() 
 
 class Pages(db.Model):
     id = db.Column(db.Integer, primary_key=True)

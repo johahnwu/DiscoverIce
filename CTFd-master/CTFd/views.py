@@ -1,11 +1,10 @@
 from flask import current_app as app, render_template, render_template_string, request, redirect, abort, jsonify, json as json_mod, url_for, session, Blueprint, Response
 from CTFd.utils import authed, ip2long, long2ip, is_setup, validate_url, get_config, set_config, sha512, get_ip
-from CTFd.models import db, Teams, Solves, Challenges, WrongKeys, Keys, Tags, Files, Tracking, Pages, Config
+from CTFd.models import db, Teams, Solves, Challenges, WrongKeys, Keys, Tags, Files, Tracking, Pages, Config, mysql
 
 from jinja2.exceptions import TemplateNotFound
 from passlib.hash import bcrypt_sha256
 from collections import OrderedDict
-
 import logging
 import os
 import re
@@ -247,4 +246,33 @@ def checkXSS(xss):
         return True
     else:
         return False
+
+@views.route('/sqli')
+def sqli():
+    first_name = []
+    last_name = []
+    #write function here:
+        #read user from html in flask
+        #read from database: we need to figure out this
+        #output first and last name in html 
+    
+    if(request.args.get('user')):
+        Username = request.args.get('user')
+        cursor = mysql.connection.cursor()
+        cursor.execute("USE info_sec;")
+        print Username 
+  
+        query = "SELECT first_name, last_name FROM names WHERE first_name = " +  "'%s'" % Username 
+      
+        cursor.execute(query) 
+        row = cursor.fetchone()
+        while row is not None:
+            print(row)
+            first_name.append(row[0])
+            last_name.append(row[1])
+            row = cursor.fetchone()
+
+    return render_template('sqli.html', first_name = first_name,last_name = last_name)
+
+
 
